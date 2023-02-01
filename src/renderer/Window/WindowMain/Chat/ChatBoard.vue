@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
+import { useChatStore } from "../../../store/useChatStore";
+import ChatItem from "./ChatItem.vue";
 import ChatSearch from "./ChatSearch.vue";
-onMounted(() => {});
+let store = useChatStore();
+onMounted(() => {
+  store.selectItem(store.data[6]);
+  // store.$patch((v) => (v.data[5].isSelected = true));
+});
 </script>
 <template>
   <div class="ChatList">
     <ChatSearch />
-    <div class="ListBox"></div>
+    <div class="ListBox"><ChatItem :data="item" v-for="item in store.data" :key="item.id" /></div>
   </div>
 </template>
 <style scoped lang="scss">

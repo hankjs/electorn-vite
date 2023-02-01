@@ -59,7 +59,7 @@ export class CommonWindowEvent {
           nativeWindowOpen: true,
         },
       };
-      let features = param.features === "" ? {} : JSON.parse(param.features);
+      let features = JSON.parse(param.features);
       for (let p in features) {
         if (p === "webPreferences") {
           for (let p2 in features.webPreferences) {

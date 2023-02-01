@@ -1,4 +1,4 @@
-export let createDialog = (url: string, config: any): Promise<Window> => {
+export let createDialog = (url: string, config: any = {}): Promise<Window> => {
   return new Promise((resolve, reject) => {
     let windowProxy = window.open(url, "_blank", JSON.stringify(config)) as Window;
     let readyHandler = (e: any) => {

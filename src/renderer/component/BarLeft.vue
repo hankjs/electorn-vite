@@ -26,9 +26,7 @@ window.addEventListener("message", (e) => {
 });
 let openSettingWindow = async () => {
   let config = { modal: true, width: 800, webPreferences: { webviewTag: false } };
-  let dialog = await createDialog(`/WindowSetting/AccountSetting`, config);
-  let msg = { msgName: "hello", value: "msg from your parent" };
-  dialog.postMessage(msg);
+  createDialog(`/WindowSetting/AccountSetting`, config);
 };
 </script>
 <template>
