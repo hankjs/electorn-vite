@@ -9,8 +9,8 @@ app.on("browser-window-created", (e, win) => {
 let mainWindow: BrowserWindow;
 app.whenReady().then(() => {
   let config = {
-    show: false,
     frame: false,
+    show: false,
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false,
@@ -25,6 +25,7 @@ app.whenReady().then(() => {
   mainWindow = new BrowserWindow(config);
 
   mainWindow.webContents.openDevTools({ mode: "undocked" });
+
   if (process.argv[2]) {
     mainWindow.loadURL(process.argv[2]);
   } else {
@@ -33,5 +34,4 @@ app.whenReady().then(() => {
     // Updater.check();
   }
   CommonWindowEvent.listen();
-  CommonWindowEvent.regWinEvent(mainWindow);
 });

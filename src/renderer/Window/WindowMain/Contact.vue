@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BarTop from "../../component/BarTop.vue";
+import BarTop from "../../Component/BarTop.vue";
 </script>
 <template>
   <div>联系人</div>

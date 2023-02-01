@@ -11,7 +11,7 @@
 - src/model                 目录放置应用程序的模型文件，比如消息类、会话类、用户设置类等，主进程和渲染进程的代码都有可能使用这些类。
 - src/renderer              目录放置渲染进程的代码。
 - src/renderer/assets       放置字体图标、公共样式、图片等文件。
-- src/renderer/component    放置公共组件，比如标题栏组件、菜单组件等。
+- src/renderer/Component    放置公共组件，比如标题栏组件、菜单组件等。
 - src/renderer/store        目录存放 Vue 项目的数据状态组件，用于在不同的 Vue 组件中共享数据。
 - src/renderer/Window       目录存放不同窗口的入口组件，这些组件是通过 vue-router 导航的，这个目录下的子目录存放对应窗口的子组件。
 - src/renderer/App.vue      是渲染进程的入口组件，这个组件内只有一个用于导航到不同的窗口。

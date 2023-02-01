@@ -1,5 +1,16 @@
 <script setup lang="ts">
-import BarTop from "../component/BarTop.vue";
+import BarTop from "../Component/BarTop.vue";
+import { onMounted } from "vue";
+import { dialogReady } from "../Common/Dialog";
+let msgHandler = (e: any) => {
+  console.log(e.data);
+  window.opener.postMessage({ msgName: "hello", value: "I am your son." });
+};
+onMounted(() => {
+  console.log("ready", Date.now());
+  window.addEventListener("message", msgHandler);
+  dialogReady();
+});
 </script>
 <template>
   <BarTop title="设置" />

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import { createDialog } from "../Common/Dialog";
 
 let mainWindowRoutes = ref([
   { path: `/WindowMain/Chat`, isSelected: true, icon: `icon-chat`, iconSelected: `icon-chat` },
@@ -16,6 +17,19 @@ watch(
     deep: true,
   }
 );
+// let openSettingWindow = () => {
+//   let config = { modal: true, width: 2002, webPreferences: { webviewTag: false } };
+//   window.open(`/WindowSetting/AccountSetting`, "_blank", JSON.stringify(config));
+// };
+window.addEventListener("message", (e) => {
+  console.log(e.data);
+});
+let openSettingWindow = async () => {
+  let config = { modal: true, width: 800, webPreferences: { webviewTag: false } };
+  let dialog = await createDialog(`/WindowSetting/AccountSetting`, config);
+  let msg = { msgName: "hello", value: "msg from your parent" };
+  dialog.postMessage(msg);
+};
 </script>
 <template>
   <div class="BarLeft">
@@ -27,7 +41,7 @@ watch(
         <i :class="[`icon`, item.isSelected ? item.iconSelected : item.icon]"></i>
       </router-link>
     </div>
-    <div class="setting">
+    <div @click="openSettingWindow" class="setting">
       <div class="menuItem">
         <i class="icon icon-setting"></i>
       </div>

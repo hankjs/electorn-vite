@@ -42,5 +42,38 @@ export class CommonWindowEvent {
     win.on("unmaximize", () => {
       win.webContents.send("windowUnmaximized");
     });
+    //@ts-ignore
+    win.webContents.setWindowOpenHandler((param) => {
+      let config = {
+        frame: false,
+        show: true,
+        parent: null,
+        webPreferences: {
+          nodeIntegration: true,
+          webSecurity: false,
+          allowRunningInsecureContent: true,
+          contextIsolation: false,
+          webviewTag: true,
+          spellcheck: false,
+          disableHtmlFullscreenWindowResize: true,
+          nativeWindowOpen: true,
+        },
+      };
+      let features = param.features === "" ? {} : JSON.parse(param.features);
+      for (let p in features) {
+        if (p === "webPreferences") {
+          for (let p2 in features.webPreferences) {
+            //@ts-ignore
+            config.webPreferences[p2] = features.webPreferences[p2];
+          }
+        } else {
+          //@ts-ignore
+          config[p] = features[p];
+        }
+      }
+      //@ts-ignore
+      if (config["modal"] === true) config.parent = win;
+      return { action: "allow", overrideBrowserWindowOptions: config };
+    });
   }
 }
