@@ -4,7 +4,10 @@ import "./assets/icon/iconfont.css";
 import App from "./App.vue";
 import { router } from "./router";
 import { createPinia } from "pinia";
+import { db } from "../common/db";
+db("Chat")
+  .first()
+  .then((obj) => {
+    console.log(obj);
+  });
 createApp(App).use(createPinia()).use(router).mount("#app");
-
-const Database = require("better-sqlite3");
-const db = new Database("db.db", { verbose: console.log, nativeBinding: "./node_modules/better-sqlite3/build/Release/better_sqlite3.node" });
