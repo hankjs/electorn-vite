@@ -9,6 +9,7 @@ app.on("browser-window-created", (e, win) => {
 let mainWindow: BrowserWindow;
 app.whenReady().then(() => {
   let config = {
+    show: false,
     frame: false,
     webPreferences: {
       nodeIntegration: true,
